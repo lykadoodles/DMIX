@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Matter Integrator Pathway Questionnaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background-color: #f0f4f8; /* Light grey-blue */
+        }
+        .question-group {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 0.75rem; /* Slightly more rounded */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb; /* Subtle border */
+        }
+        .question-title {
+            font-size: 1.15rem; /* Slightly smaller for better hierarchy */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e3a8a; /* Darker blue for question titles */
+        }
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #374151; /* Tailwind gray-700 */
+        }
+        .radio-label input[type="radio"], .checkbox-label input[type="checkbox"] {
+            margin-right: 0.75rem;
+            height: 1.2rem;
+            width: 1.2rem;
+            accent-color: #2563eb; /* Tailwind blue-600 */
+        }
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 1rem; /* Spacing for input fields */
+        }
+        .input-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* Tailwind gray-400 */
+            font-size: 0.9rem;
+        }
+        .text-input, .textarea-input {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.5rem; /* Padding for icon */
+            border: 1px solid #d1d5db; /* Tailwind gray-300 */
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: #1f2937;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .text-input:focus, .textarea-input:focus {
+            border-color: #2563eb; /* Tailwind blue-600 */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+        .textarea-input {
+            padding-top: 0.85rem; /* Adjust for textarea */
+        }
+        .submit-button {
+            background-color: #2563eb; /* Tailwind blue-600 */
+            color: white;
+            font-weight: 600;
+            padding: 0.85rem 2.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .submit-button:hover {
+            background-color: #1d4ed8; /* Tailwind blue-700 */
+            transform: translateY(-1px);
+        }
+        .submit-button i {
+            margin-left: 0.5rem;
+        }
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: #1e3a8a; /* Dark blue */
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #bfdbfe; /* Light blue accent */
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.75rem;
+            color: #2563eb; /* Blue icon */
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+        }
+        .thank-you-gradient {
+             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <header class="header-gradient text-white p-8 rounded-xl shadow-2xl mb-12 text-center">
+            <i class="fas fa-cogs fa-3x mb-4 opacity-75"></i>
+            <h1 class="text-4xl font-extrabold tracking-tight">Integrator Pathway Questionnaire</h1>
+            <p class="mt-3 text-lg opacity-90">Unlock Your Optimal Digital Matter Integration Strategy.</p>
+        </header>
+
+        <form id="integratorForm">
+            <!-- Section 0: Contact Information -->
+            <div class="question-group">
+                <h2 class="section-title"><i class="fas fa-user-circle"></i>Your Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" name="contact_name" class="text-input" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" name="contact_email" class="text-input" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fas fa-building input-icon"></i>
+                        <input type="text" name="contact_company" class="text-input" placeholder="Company Name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fas fa-briefcase input-icon"></i>
+                        <input type="text" name="contact_role" class="text-input" placeholder="Your Role">
+                    </div>
+                </div>
+                <div class="input-wrapper mt-4">
+                     <i class="fas fa-bullseye input-icon" style="top: 1.25rem;"></i> <!-- Adjusted icon position for textarea -->
+                    <textarea name="contact_goal" class="textarea-input" rows="3" placeholder="Briefly, what is your primary goal for this integration?"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 1: Project Overview & Goals -->
+            <div class="question-group">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i>Section 1: Project Overview & Goals</h2>
+                <div>
+                    <p class="question-title">1. What is the primary objective of your integration?</p>
+                    <label class="radio-label"><input type="radio" name="q1_objective" value="A"> A. Receiving and processing device data into our existing platform.</label>
+                    <label class="radio-label"><input type="radio" name="q1_objective" value="B"> B. Both receiving data AND programmatically managing/controlling devices.</label>
+                    <label class="radio-label"><input type="radio" name="q1_objective" value="C"> C. Primarily using Telematics Guru, with potential to send data to another system.</label>
+                    <label class="radio-label"><input type="radio" name="q1_objective" value="D_other"> D. Other (please specify):</label>
+                    <input type="text" name="q1_objective_other_text" class="text-input !pl-4" placeholder="Specify other objective"> <!-- Removed icon for this specific input -->
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">2. What types of Digital Matter devices will you be integrating?</p>
+                    <label class="radio-label"><input type="radio" name="q2_device_types" value="A"> A. Standard cellular devices (e.g., Oyster3, Yabby3, Dart3)</label>
+                    <label class="radio-label"><input type="radio" name="q2_device_types" value="B"> B. "Edge" devices (e.g., Yabby Edge, Oyster Edge, Barra Edge)</label>
+                    <label class="radio-label"><input type="radio" name="q2_device_types" value="C"> C. "Fusion" or "Core" devices (e.g., Manta Fusion, Barra Core)</label>
+                    <label class="radio-label"><input type="radio" name="q2_device_types" value="D"> D. A mix of the above.</label>
+                    <label class="radio-label"><input type="radio" name="q2_device_types" value="E"> E. Unsure at this stage.</label>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">3. Approximately how many devices do you anticipate integrating in the first year?</p>
+                    <label class="radio-label"><input type="radio" name="q3_device_volume" value="A"> A. 1-100</label>
+                    <label class="radio-label"><input type="radio" name="q3_device_volume" value="B"> B. 101-1000</label>
+                    <label class="radio-label"><input type="radio" name="q3_device_volume" value="C"> C. 1001-5000</label>
+                    <label class="radio-label"><input type="radio" name="q3_device_volume" value="D"> D. 5000+</label>
+                </div>
+            </div>
+
+            <!-- Section 2: Technical Capabilities & Resources -->
+            <div class="question-group">
+                <h2 class="section-title"><i class="fas fa-laptop-code"></i>Section 2: Technical Capabilities & Resources</h2>
+                <div>
+                    <p class="question-title">4. What is your team's experience level with the following technologies?</p>
+                    <div class="ml-4 space-y-6">
+                        <div>
+                            <p class="font-semibold text-gray-700 mb-2">Receiving/Parsing JSON data via HTTP/HTTPS POST:</p>
+                            <label class="radio-label"><input type="radio" name="q4_exp_json" value="High"> High (Very experienced)</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_json" value="Medium"> Medium (Some experience)</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_json" value="Low"> Low (Little to no experience)</label>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-700 mb-2">Developing a TCP/IP listener to parse raw binary data streams:</p>
+                            <label class="radio-label"><input type="radio" name="q4_exp_tcp" value="High"> High</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_tcp" value="Medium"> Medium</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_tcp" value="Low"> Low</label>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-700 mb-2">Working with REST APIs (making GET/POST requests, handling responses):</p>
+                            <label class="radio-label"><input type="radio" name="q4_exp_rest" value="High"> High</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_rest" value="Medium"> Medium</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_rest" value="Low"> Low</label>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-700 mb-2">Server-side development (e.g., building an endpoint to receive data):</p>
+                            <label class="radio-label"><input type="radio" name="q4_exp_server" value="High"> High</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_server" value="Medium"> Medium</label>
+                            <label class="radio-label"><input type="radio" name="q4_exp_server" value="Low"> Low</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">5. Does your team prefer human-readable data formats (like JSON)?</p>
+                    <label class="radio-label"><input type="radio" name="q5_data_format_pref" value="Yes"> Yes, ease of development and readability is a priority.</label>
+                    <label class="radio-label"><input type="radio" name="q5_data_format_pref" value="No"> No, performance with raw data is more critical.</label>
+                    <label class="radio-label"><input type="radio" name="q5_data_format_pref" value="Neutral"> Neutral / No strong preference.</label>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">6. Are you comfortable managing complexities of direct device communication (if Device Manager is bypassed)?</p>
+                    <label class="radio-label"><input type="radio" name="q6_direct_comfort" value="Yes"> Yes, we have the expertise.</label>
+                    <label class="radio-label"><input type="radio" name="q6_direct_comfort" value="No"> No, we prefer to leverage Device Manager.</label>
+                    <label class="radio-label"><input type="radio" name="q6_direct_comfort" value="Unsure"> Unsure, need more information.</label>
+                </div>
+            </div>
+
+            <!-- Section 3: Platform & Support Needs -->
+            <div class="question-group">
+                <h2 class="section-title"><i class="fas fa-concierge-bell"></i>Section 3: Platform & Support Needs</h2>
+                <div>
+                    <p class="question-title">7. How critical is access to full Device Manager features (management, diagnostics, GNSS aiding)?</p>
+                    <label class="radio-label"><input type="radio" name="q7_dm_reliance" value="Very Critical"> Very Critical - We want to fully utilize Device Manager.</label>
+                    <label class="radio-label"><input type="radio" name="q7_dm_reliance" value="Moderately Critical"> Moderately Critical - Some features are useful.</label>
+                    <label class="radio-label"><input type="radio" name="q7_dm_reliance" value="Low Criticality"> Low Criticality - We aim for independence.</label>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">8. Are you using or planning to use Telematics Guru for end-users?</p>
+                    <label class="radio-label"><input type="radio" name="q8_tg_usage" value="Yes Core"> Yes, Telematics Guru will be a core part.</label>
+                    <label class="radio-label"><input type="radio" name="q8_tg_usage" value="Yes Hybrid"> We might use TG for some features, but also need data elsewhere.</label>
+                    <label class="radio-label"><input type="radio" name="q8_tg_usage" value="No"> No, we are building/using our own platform exclusively.</label>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">9. What are your technical support expectations from Digital Matter?</p>
+                    <label class="radio-label"><input type="radio" name="q9_support_expectation" value="Significant"> We anticipate needing significant hands-on support.</label>
+                    <label class="radio-label"><input type="radio" name="q9_support_expectation" value="Self-sufficient with good docs"> Fairly self-sufficient with good docs, support for complex issues.</label>
+                    <label class="radio-label"><input type="radio" name="q9_support_expectation" value="Minimal"> We aim to be highly self-sufficient.</label>
+                </div>
+
+                <div class="mt-8">
+                    <p class="question-title">10. Is minimizing ongoing per-device platform fees a primary driver?</p>
+                    <label class="radio-label"><input type="radio" name="q10_fee_sensitivity" value="Yes High Priority"> Yes, minimizing fees is a very high priority.</label>
+                    <label class="radio-label"><input type="radio" name="q10_fee_sensitivity" value="Consideration"> It's a consideration, but functionality/ease are more important.</label>
+                    <label class="radio-label"><input type="radio" name="q10_fee_sensitivity" value="No Major Factor"> No, it's not a major factor.</label>
+                </div>
+            </div>
+
+             <!-- Section 4: Specific Requirements (Optional) -->
+            <div class="question-group">
+                <h2 class="section-title"><i class="fas fa-cogs"></i>Section 4: Specific Requirements</h2>
+                <div>
+                    <p class="question-title">11. Do you require the ability to send commands (async messages) to devices?</p>
+                    <label class="radio-label"><input type="radio" name="q11_async_requirement" value="Yes Key"> Yes, this is a key requirement.</label>
+                    <label class="radio-label"><input type="radio" name="q11_async_requirement" value="Potential Future"> Potentially in the future, not immediate.</label>
+                    <label class="radio-label"><input type="radio" name="q11_async_requirement" value="No"> No, we only need to receive data.</label>
+                </div>
+
+                <div class="mt-8 input-wrapper">
+                    <p class="question-title">12. Do you have specific security requirements for data transmission?</p>
+                    <i class="fas fa-shield-alt input-icon" style="top: 3.2rem;"></i>
+                    <textarea name="q12_security_requirements" class="textarea-input" rows="3" placeholder="e.g., end-to-end encryption, specific protocols..."></textarea>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <button type="button" onclick="submitForm()" class="submit-button text-lg">
+                    Discover Your Integration Pathway <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="thankYouMessage" class="hidden mt-12 p-8 thank-you-gradient text-white rounded-xl shadow-2xl text-center">
+            <i class="fas fa-paper-plane fa-3x mb-6 opacity-75"></i>
+            <h3 class="text-3xl font-bold">Thank You for Your Insights!</h3>
+            <p class="mt-4 text-lg opacity-90">We are now charting your optimal integration course.</p>
+            <p class="mt-2 text-lg opacity-90">You'll soon receive an email with your personalized **Integrator Persona Guide to Digital Matter Integration** and our recommended pathway to success.</p>
+            <p class="mt-6 text-sm opacity-75">Innovation awaits!</p>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('integratorForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            let isValid = true;
+
+            // Validate contact fields
+            const requiredContactFields = ['contact_name', 'contact_email', 'contact_company'];
+            for (const fieldName of requiredContactFields) {
+                const field = form.elements[fieldName];
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500', '!border-2'); // Highlight empty field
+                    field.focus();
+                    alert(`Please fill out the '${field.placeholder}' field.`);
+                    return; // Stop submission
+                } else {
+                    field.classList.remove('border-red-500', '!border-2');
+                }
+            }
+             // Email validation
+            const emailField = form.elements['contact_email'];
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailField.value.trim())) {
+                isValid = false;
+                emailField.classList.add('border-red-500', '!border-2');
+                emailField.focus();
+                alert('Please enter a valid email address.');
+                return;
+            } else {
+                emailField.classList.remove('border-red-500', '!border-2');
+            }
+
+
+            const requiredRadioGroups = ['q1_objective', 'q2_device_types', 'q3_device_volume', 'q4_exp_json', 'q4_exp_tcp', 'q4_exp_rest', 'q4_exp_server', 'q5_data_format_pref', 'q6_direct_comfort', 'q7_dm_reliance', 'q8_tg_usage', 'q9_support_expectation', 'q10_fee_sensitivity', 'q11_async_requirement'];
+            
+            for (const groupName of requiredRadioGroups) {
+                const radioGroup = form.elements[groupName];
+                if (radioGroup && !radioGroup.value) { // Check if the group exists and has a value
+                    isValid = false;
+                    // Find the question title associated with this radio group
+                    let questionElement = radioGroup[0] || radioGroup; // If single radio, it's not an array
+                    let questionGroupDiv = questionElement.closest('.question-group');
+                    let questionTitleElement = questionElement.closest('div').querySelector('.question-title, .font-semibold');
+                    
+                    alert(`Please answer all required questions. The question starting with "${questionTitleElement.textContent.substring(0,50)}..." is incomplete.`);
+                    
+                    if (questionGroupDiv) {
+                        questionGroupDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // Highlight the specific question block
+                        const questionBlock = questionElement.closest('div');
+                         if(questionBlock && !questionBlock.classList.contains('question-group')) {
+                            questionBlock.classList.add('border-2', 'border-red-400', 'p-2', 'rounded-md', 'bg-red-50');
+                            setTimeout(() => {
+                                questionBlock.classList.remove('border-2', 'border-red-400', 'p-2', 'rounded-md', 'bg-red-50');
+                            }, 3000);
+                        } else if (questionGroupDiv) { // Fallback to highlighting the whole group if specific block not found
+                             questionGroupDiv.classList.add('border-2', 'border-red-400');
+                             setTimeout(() => {
+                                questionGroupDiv.classList.remove('border-2', 'border-red-400');
+                            }, 3000);
+                        }
+                    }
+                    return; 
+                }
+            }
+
+            if (isValid) {
+                const formData = new FormData(form);
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                console.log("Form Data:", data); 
+
+                form.style.display = 'none'; // Hide form
+                thankYouMessage.classList.remove('hidden');
+                thankYouMessage.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>
