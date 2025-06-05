@@ -14,7 +14,7 @@
             padding-top: 1rem; /* Add some padding at the top */
         }
         .badge-main-container {
-            max-width: 1200px; /* Max width for the content */
+            max-width: 80vw; /* Changed as per request */
             margin: 0 auto;
             padding: 2rem 1rem;
         }
@@ -25,24 +25,38 @@
         }
         .badge {
             border-radius: 1rem;
-            padding: 2rem 1.5rem; /* Adjusted padding */
-            min-height: 550px; /* Increased min-height for new content */
+            padding: 1.5rem; /* Uniform padding */
+            min-height: 580px; /* Adjusted min-height for new content */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* This will center the theme badge horizontally */
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08), 0 6px 6px rgba(0,0,0,0.1); /* Slightly softer shadow */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08), 0 6px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         .badge:hover {
-            transform: translateY(-8px) scale(1.02); /* Subtle scale on hover */
+            transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 25px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.18);
         }
+        .badge-theme {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(0,0,0,0.65);
+            background-color: rgba(255,255,255,0.85);
+            padding: 0.3rem 1rem; /* Adjusted padding */
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem; /* Space from badge top edge */
+            margin-bottom: 1.5rem; /* Space before the icon */
+            /* No longer absolute, centered by parent flex settings */
+        }
         .badge-icon {
-            font-size: 3.5rem; /* Slightly smaller icon */
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem; /* Spacing below icon */
+            /* margin-top is now handled by badge-theme's margin-bottom */
             width: 70px;
             height: 70px;
             display: flex;
@@ -53,7 +67,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .badge-name {
-            font-size: 1.6rem; /* Adjusted size */
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
         }
@@ -71,31 +85,18 @@
             font-style: italic;
             color: rgba(255,255,255,0.95);
             line-height: 1.5;
-            margin-bottom: 1.5rem; /* Add margin below motto */
-            min-height: 60px; /* Give motto some space */
+            margin-bottom: 1.5rem;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .badge-theme {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: rgba(0,0,0,0.65);
-            background-color: rgba(255,255,255,0.85);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .details-section {
             margin-top: 1rem;
             width: 100%;
             text-align: left;
-            padding: 0 0.5rem; /* Padding within the section */
+            padding: 0 0.5rem;
         }
         .details-section h4 {
             font-size: 1rem;
@@ -106,7 +107,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.3);
         }
         .details-section ul {
-            list-style: none; /* Changed to none, using icons */
+            list-style: none;
             padding-left: 0;
             font-size: 0.85rem;
             color: rgba(255,255,255,0.85);
@@ -115,58 +116,49 @@
          .details-section ul li {
             margin-bottom: 0.4rem;
             display: flex;
-            align-items: flex-start; /* Align icon with first line of text */
+            align-items: flex-start;
         }
         .details-section ul li i {
             margin-right: 0.5rem;
-            margin-top: 0.2rem; /* Align icon slightly better with text */
+            margin-top: 0.2rem;
             font-size: 0.8rem;
-            width: 16px; /* Fixed width for icon container */
+            width: 16px;
             text-align: center;
+            flex-shrink: 0;
         }
-
 
         /* Persona Specific Styles */
-        .ss-badge { background: linear-gradient(135deg, #2980b9, #27ae60); color: white; } /* Blue to Green */
-        .pd-badge { background: linear-gradient(135deg, #2c3e50, #1abc9c); color: white; } /* Dark Slate Blue to Turquoise */
-        .ee-badge { background: linear-gradient(135deg, #d35400, #f39c12); color: white; } /* Dark Orange to Orange */
-        .ssa-badge { background: linear-gradient(135deg, #4A5568, #2D3748); color: white; } /* Tailwind Gray 700 to Gray 800 */
+        .ss-badge { background: linear-gradient(135deg, #2980b9, #27ae60); color: white; }
+        .pd-badge { background: linear-gradient(135deg, #2c3e50, #1abc9c); color: white; }
+        .ee-badge { background: linear-gradient(135deg, #d35400, #f39c12); color: white; }
+        .ssa-badge { background: linear-gradient(135deg, #4A5568, #2D3748); color: white; }
 
-        .ss-badge .details-section ul li i { color: #A7F3D0; } /* Light Mint for SS focus */
-        .pd-badge .details-section ul li i { color: #99F6E4; } /* Light Teal for PD focus */
-        .ee-badge .details-section ul li i { color: #FDE68A; } /* Light Yellow/Orange for EE focus */
-        .ssa-badge .details-section ul li i { color: #CBD5E1; } /* Light Gray for SSA focus */
+        .ss-badge .details-section ul li i { color: #A7F3D0; }
+        .pd-badge .details-section ul li i { color: #99F6E4; }
+        .ee-badge .details-section ul li i { color: #FDE68A; }
+        .ssa-badge .details-section ul li i { color: #CBD5E1; }
 
         /* Decorative elements */
-        .badge::before {
+        .badge::before, .badge::after {
             content: '';
             position: absolute;
-            top: -60px;
-            left: -60px;
-            width: 180px;
-            height: 180px;
-            background-color: rgba(255,255,255,0.03);
             border-radius: 50%;
             opacity: 0.7;
-            transform: rotate(30deg);
-            z-index: 0;
+            z-index: 0; /* Behind content */
             pointer-events: none;
+        }
+        .badge::before {
+            top: -60px; left: -60px; width: 180px; height: 180px;
+            background-color: rgba(255,255,255,0.03);
+            transform: rotate(30deg);
         }
          .badge::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            right: -80px;
-            width: 220px;
-            height: 220px;
+            bottom: -80px; right: -80px; width: 220px; height: 220px;
             background-color: rgba(255,255,255,0.04);
-            border-radius: 50%;
-            opacity: 0.8;
             transform: rotate(-45deg);
-            z-index: 0;
-            pointer-events: none;
         }
-        .badge > * {
+        /* Ensure direct div children of .badge are above pseudo-elements */
+        .badge > div {
             position: relative;
             z-index: 1;
         }
