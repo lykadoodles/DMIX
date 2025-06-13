@@ -127,7 +127,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div class="info-box">
                     <h3>1. Is it a Connection Problem?</h3>
-                    <p>The device is talking to Device Manager, but Device Manager cannot successfully send the data to **your** server.</p>
+                    <p>The device is talking to Device Manager, but Device Manager cannot successfully send the data to <b>your</b> server.</p>
                 </div>
                 <div class="info-box">
                     <h3>2. Is it a Data Problem?</h3>
@@ -147,7 +147,7 @@
             <h4 class="font-semibold mt-4 mb-2 text-gray-100">How to Use It:</h4>
             <ol class="list-decimal list-inside space-y-2">
                 <li>In Device Manager, find your device and click the "Wrench" icon (Manage).</li>
-                <li>Go to the **Data Capturing** tab and click **Start Capturing**.</li>
+                <li>Go to the <b>Data Capturing</b> tab and click <b>Start Capturing</b>.</li>
                 <li>Power cycle your device or trigger an upload. You will see live logs appear.</li>
             </ol>
             <h4 class="font-semibold mt-4 mb-2 text-gray-100">What to Look For:</h4>
@@ -161,10 +161,10 @@
 
 
             <h3 class="subsection-title">B. The Forwarder Logs (For Connection Issues)</h3>
-            <p>If data appears in the Data Capturing tool but not on your server, the problem is almost always with the connection **between** Device Manager and your endpoint. The Forwarder Logs will tell you why.</p>
+            <p>If data appears in the Data Capturing tool but not on your server, the problem is almost always with the connection <b>between</b> Device Manager and your endpoint. The Forwarder Logs will tell you why.</p>
             <h4 class="font-semibold mt-4 mb-2 text-gray-100">How to Use It:</h4>
             <ol class="list-decimal list-inside space-y-2">
-                <li>From the main menu in Device Manager, go to **Forwarders**.</li>
+                <li>From the main menu in Device Manager, go to <b>Forwarders</b>.</li>
                 <li>Find the Connector/Forwarder you configured and click the "Logs" icon (<i class="fas fa-file-alt"></i>).</li>
             </ol>
             <h4 class="font-semibold mt-4 mb-2 text-gray-100">What to Look For:</h4>
@@ -175,7 +175,7 @@
                         <ul class="list-disc pl-5 mt-2">
                             <li><code>HTTP/404 Not Found</code>: Your endpoint URL is incorrect in the Connector settings.</li>
                             <li><code>HTTP/400 Bad Request</code> or <code>HTTP/500 Internal Server Error</code>: Your server received the data but crashed while processing it. Check your application logs.</li>
-                            <li><code>Timeout</code>: Device Manager couldn't connect to your server. This is very often a **firewall issue**. Ensure your server's IP and port are publicly accessible.</li>
+                            <li><code>Timeout</code>: Device Manager couldn't connect to your server. This is very often a <b>firewall issue</b>. Ensure your server's IP and port are publicly accessible.</li>
                         </ul>
                     </li>
                 </ul>
@@ -201,7 +201,7 @@
             <ol class="list-decimal list-inside space-y-4">
                 <li><strong>Record Header:</strong>
                     <ul>
-                        <li><code>"Reason": 11</code> → Look up in `DMT Log Reasons` doc. This means **"Heartbeat"**.</li>
+                        <li><code>"Reason": 11</code> → Look up in `DMT Log Reasons` doc. This means <b>"Heartbeat"</b>.</li>
                         <li><code>"DateUTC": "..."</code> → The time the record was created on the device.</li>
                     </ul>
                 </li>
@@ -218,15 +218,15 @@
                 <li><strong>Field 2 (FType 2 - Digital Data):</strong>
                     <ul>
                         <li><code>"DevStat": 3</code> → This is a bitmask. Convert 3 to binary: <code>...0011</code>.
-                            <br>Bit 0 is <code>1</code> (In Trip = true). Bit 1 is <code>1</code> (Internal Battery = Good).</li>
+                            <br>Bit 0 is <code>1</code> (<b>In Trip</b> = true). Bit 1 is <code>1</code> (<b>Internal Battery</b> = Good).</li>
                         <li><code>"Din": 1</code> → Digital Inputs. Convert 1 to binary: <code>...0001</code>.
-                            <br>Bit 0 is <code>1</code> (Ignition is ON).</li>
+                            <br>Bit 0 is <code>1</code> (<b>Ignition</b> is ON).</li>
                     </ul>
                 </li>
                 <li><strong>Field 3 (FType 6 - Analog Data):</strong>
                     <ul>
-                        <li><code>"1": 4144</code> → Analog #1 is "Internal Battery Voltage" in `mV`. Value is `4.144 V`.</li>
-                        <li><code>"4": 25</code> → Analog #4 is "GSM Signal Strength". Value is `25` (a strong CSQ value).</li>
+                        <li><code>"1": 4144</code> → Analog #1 is <b>"Internal Battery Voltage"</b> in `mV`. Value is `4.144 V`.</li>
+                        <li><code>"4": 25</code> → Analog #4 is <b>"GSM Signal Strength"</b>. Value is `25` (a strong CSQ value).</li>
                     </ul>
                 </li>
             </ol>
