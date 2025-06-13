@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Integration Guide: Traccar & Flespi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+        }
+        .content-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+        .path-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e3a8a; /* Dark blue */
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #bfdbfe; /* Light blue accent */
+            display: flex;
+            align-items: center;
+        }
+        .path-title img {
+            height: 32px;
+            width: 32px;
+            margin-right: 0.75rem;
+            border-radius: 0.25rem;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .step-number {
+            flex-shrink: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: #dbeafe; /* Tailwind blue-200 */
+            color: #1e3a8a; /* Tailwind blue-800 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-right: 1.5rem;
+        }
+        .step-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        .step-content p, .step-content li {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        .step-content code {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        .alert-box {
+            background-color: #eff6ff; /* blue-50 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .alert-box h4 {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto py-12 px-4">
+        <!-- Header Section -->
+        <header class="header-gradient text-white p-10 rounded-xl shadow-2xl mb-12 text-center">
+            <i class="fas fa-sitemap fa-3x mb-4 opacity-75"></i>
+            <h1 class="text-4xl font-extrabold tracking-tight">Quick Integration Guide</h1>
+            <p class="mt-3 text-lg opacity-90 max-w-2xl mx-auto">Connecting Digital Matter Devices with Traccar & Flespi</p>
+        </header>
+
+        <!-- Core Concept -->
+        <div class="content-card">
+            <h2 class="path-title"><i class="fas fa-lightbulb mr-3 text-yellow-400"></i>The Core Concept</h2>
+            <p class="text-gray-600">Both Traccar and Flespi are powerful platforms designed to listen for direct connections from IoT devices. For this reason, this guide uses the **Direct to 3rd Party Server** integration method.</p>
+            <p class="mt-2 text-gray-600">This means we will configure the Digital Matter device (via Device Manager) to send its data directly to the unique server address and port provided by your Traccar or Flespi instance. This is a highly efficient, performant path that puts you in full control.</p>
+        </div>
+
+        <!-- Path A: Traccar -->
+        <div class="content-card">
+            <h2 class="path-title">
+                <img src="https://www.traccar.org/images/logo.svg" alt="Traccar Logo">
+                Path A: Integrating with Traccar
+            </h2>
+            <p class="mb-6 text-gray-600">Traccar listens for device data on specific ports, with each port corresponding to a device protocol. Digital Matter devices use the <code>dmt</code> protocol.</p>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Get Your Traccar Server Details</h3>
+                    <p>Identify your Traccar server's public IP address or domain name and the port for the Digital Matter protocol. The default port is <code>5137</code>.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Configure Your Digital Matter Device</h3>
+                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's **Admin Parameters** and go to the **Third Party Server** tab. Enter your Traccar server details:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li><b>Non OEM Server:</b> Your Traccar IP or domain (e.g., <code>123.45.67.89</code>).</li>
+                        <li><b>Non OEM Server TCP Port:</b> <code>5137</code> (or your custom DMT port).</li>
+                    </ul>
+                     <p class="mt-2">Save the parameter changes. The device will update on its next connection.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Add Your Device in Traccar</h3>
+                    <p>In your Traccar UI, add a new device. Give it a name and use the device's **IMEI** as the **Identifier**.</p>
+                </div>
+            </div>
+
+             <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Verify the Connection</h3>
+                    <p>Power cycle your Digital Matter device. You should see its status change to "Online" in Traccar. Check the <code>tracker-server.log</code> for incoming messages from your device's IMEI to confirm data reception.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Path B: Flespi -->
+        <div class="content-card">
+            <h2 class="path-title">
+                <img src="https://flespi.com/images/logo_flespi.svg" alt="Flespi Logo" style="height: 28px;">
+                Path B: Integrating with Flespi
+            </h2>
+             <p class="mb-6 text-gray-600">Flespi uses a "Channel" as a dedicated endpoint for each protocol. You will create a channel and then point your device to it.</p>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Create a Flespi Channel</h3>
+                    <p>In your Flespi account, navigate to **Telematics Hub** -> **Channels** and create a new channel. For the **Protocol**, search for and select <code>digital-matter</code>. Save it to get your unique **Domain Name and Port**.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Configure Your Digital Matter Device</h3>
+                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's **Admin Parameters** -> **Third Party Server** tab. Enter your Flespi channel details:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li><b>Non OEM Server:</b> The Domain Name from Flespi.</li>
+                        <li><b>Non OEM Server TCP Port:</b> The Port from Flespi.</li>
+                    </ul>
+                     <p class="mt-2">Save the parameter changes.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Create a Flespi Device & Verify</h3>
+                    <p>After power cycling your device, check the **Logs & Messages** tab of your Flespi channel for incoming data. Then, create a new device in Flespi (**Telematics Hub** -> **Devices**), select the correct device type, and use the device's **IMEI** as the **Ident**. You will then see parsed JSON data in the device's logs.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Important Next Steps -->
+        <div class="content-card">
+            <h2 class="path-title"><i class="fas fa-exclamation-circle mr-3 text-yellow-500"></i>Important Next Steps</h2>
+             <div class="alert-box">
+                <h4><i class="fas fa-signal"></i> APN Settings</h4>
+                <p>Ensure the APN is correctly set in the device's parameters in Device Manager, especially if you are using a custom SIM card.</p>
+            </div>
+             <div class="alert-box">
+                <h4><i class="fas fa-sync-alt"></i> Firmware Updates (FOTA)</h4>
+                <p>To receive critical firmware updates, we highly recommend setting the **OEM Connection Period (days)** on the "Third Party Server" tab to <code>7</code>. This tells the device to check in with Device Manager once a week without interrupting its regular data flow to your platform.</p>
+            </div>
+             <div class="alert-box">
+                <h4><i class="fas fa-cogs"></i> Advanced Control (Recovery Mode, etc.)</h4>
+                <p>While your device's data flows directly to your platform, you can still use the **Digital Matter OEM WebAPI** to send advanced commands (like setting Recovery Mode). Reference the **OEM WebAPI Postman Collection** for a ready-to-use toolkit for these commands.</p>
+            </div>
+        </div>
+        
+        <footer class="text-center py-8 mt-4 text-gray-500 text-sm">
+            <p>&copy; <span id="year"></span> Digital Matter - Integrator Xperience Project. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+     <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
