@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "a9b8c7d6-e5f4-3a2b-1c9d-abcdef123456",
+		"name": "Digital Matter OEM WebAPI - Complete Collection",
+		"description": {
+			"content": "### Welcome to the Complete Digital Matter OEM WebAPI Toolkit\n\nThis Postman collection is your comprehensive, interactive guide for the Digital Matter OEM WebAPI. It's designed to help any integrator quickly understand, test, and implement our full suite of API endpoints for managing and controlling your devices.\n\n**Who is this for?**\n\nThis collection is for **all integrator personas**. Whether you're a **Pragmatic Developer** building with JSON, an **Efficiency Engineer** working with TCP, or a **Sovereign Architect** managing a direct integration, these API endpoints provide the out-of-band management and control essential for a robust solution.\n\n### **Setup Instructions**\n\n1.  **Import this Collection:** Click \"Import\" in Postman and select this file.\n2.  **Create a Postman Environment:** Create a new environment in Postman (e.g., \"DM Production\").\n3.  **Add Environment Variables:** Add the following variables to your new environment. This collection is pre-configured to use them.\n\n| Variable | Example Value | Description |\n|---|---|---|\n| `baseURL` | `https://api.oemserver.com/v1.0` | The base URL for the API. Change to your region if needed (e.g., `https://us-api.oemserver.com/v1.0`). |\n| `username` | `your_dm_username` | Your Device Manager username for Basic Auth. |\n| `password` | `your_dm_password` | Your Device Manager password for Basic Auth. |\n| `bearerToken` | `your_api_token` | (Optional) Alternative to Basic Auth. Generate a token in Device Manager. |\n| `productId` | `87` | The Product ID for the device type you are testing (e.g., 87 for Oyster3 4G). |\n| `serial` | `123456` | The serial number of a specific device you want to test with. |\n| `imei` | `351000000012345` | The IMEI of a specific device you want to test with. |\n| `templateId` | `1001` | The ID of a Parameter Template you want to apply. |\n| `connectorId`| `2002` | The ID of a Connector you want to assign. |\n\n4.  **Select Environment:** Make sure your new environment is selected in the top-right corner of Postman.\n\nNow you are ready to explore and execute API calls!",
+			"type": "text/markdown"
+		},
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Device & Fleet Management",
+			"description": "Requests for retrieving information about your fleet of devices.",
+			"item": [
+				{
+					"name": "Get Cellular Device List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/trackingdevice/getcellulardevicelist",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"trackingdevice",
+								"getcellulardevicelist"
+							]
+						},
+						"description": "Retrieves a detailed list of all **cellular** devices you have access to. This is often the most useful list as it includes IMEI, ICCID, last connection details, and last known location.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.10.2"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Device List (Cellular & LoRaWAN)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/trackingdevice/getdevicelist",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"trackingdevice",
+								"getdevicelist"
+							]
+						},
+						"description": "Retrieves a list of **all** devices (both cellular and LoRaWAN) that you have access to. This list is less detailed than the cellular-specific one.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.10.1"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Custom Fields",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Custom1\": \"Asset-ID-123\",\n    \"Custom2\": \"Region-A\",\n    \"Custom3\": \"Fleet-B\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/trackingdevice/setcustomfields/{{productId}}/{{serial}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"trackingdevice",
+								"setcustomfields",
+								"{{productId}}",
+								"{{serial}}"
+							]
+						},
+						"description": "Sets the three custom data fields on a specific device. These fields are useful for tagging devices with your own internal identifiers, which can then be used in data forwarding (Connectors).\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.5"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Enabled Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/oyster3-4g/setenabled/{{serial}}?enabled=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"oyster3-4g",
+								"setenabled",
+								"{{serial}}"
+							],
+							"query": [
+								{
+									"key": "enabled",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Enables or disables a device in Device Manager. A disabled device will be rejected if it tries to connect. This is useful for managing billing or suspending assets.\n\n**Note:** The product name (`oyster3-4g` in the example) must be updated to match the product you are targeting.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parameter & Template Management",
+			"description": "Requests related to configuring device parameters and applying templates.",
+			"item": [
+				{
+					"name": "Get All Parameter Templates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/paramtemplate/get",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"paramtemplate",
+								"get"
+							]
+						},
+						"description": "Retrieves a list of all available parameter templates in your account. You can use the `Templateld` from the response in other requests.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.1.1"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Parameter Template on Multiple Devices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Devices\": [\n        \"123456\", \n        \"123457\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/paramtemplate/set/{{templateId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"paramtemplate",
+								"set",
+								"{{templateId}}"
+							]
+						},
+						"description": "Applies a specific parameter template to a list of devices.\n\n**Instructions:**\n1. Make sure `{{templateId}}` is set in your environment.\n2. Update the JSON body with the serial numbers of the devices you want to update.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.1.3"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Specific Device Parameters (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Devices\": [\n        \"{{serial}}\"\n    ],\n    \"ParamSections\": [\n        {\n            \"Id\": 2000, // Basic Tracking Parameter Tab ID for many devices\n            \"Params\": {\n                \"bPeriodicUploadHrMin\": \"30\" // Set Heartbeat to 30 minutes\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/trackingdevice/setdeviceparameters/{{productId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"trackingdevice",
+								"setdeviceparameters",
+								"{{productId}}"
+							]
+						},
+						"description": "Updates one or more specific parameters on a device without affecting other settings. This is a powerful tool for making targeted changes.\n\n**Example:**\nThe default body sets the heartbeat (`bPeriodicUploadHrMin`) to 30 minutes for the device specified by `{{serial}}`.\n\n**Instructions:**\n1. Set `{{serial}}` and `{{productId}}` in your environment.\n2. Modify the `ParamSections` `Id` and `Params` to match the setting you want to change. You can find Parameter IDs in the device's documentation or parameter definition files.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.2.1.5"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connector Management",
+			"description": "Manage data forwarding connectors.",
+			"item": [
+				{
+					"name": "Get All Connectors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/connector/get",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"connector",
+								"get"
+							]
+						},
+						"description": "Retrieves a list of all available data connectors in your account. The ID can be used to set the connector on devices.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.3"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Connector on Multiple Devices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Devices\": [\n        \"123456\",\n        \"123457\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/connector/set/{{connectorId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"connector",
+								"set",
+								"{{connectorId}}"
+							]
+						},
+						"description": "Assigns a specific data connector to a list of devices, telling Device Manager where to forward their data.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.3"
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Connector from Multiple Devices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Devices\": [\n        \"123456\",\n        \"123457\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/connector/clear",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"connector",
+								"clear"
+							]
+						},
+						"description": "Removes the assigned connector from a list of devices. This will stop data from being forwarded.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 6.3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Async Messaging (Device Control)",
+			"description": "Send commands (downlinks) to devices. The device will action the command the next time it connects to the server.\n\n**Note:** To check the status of a sent command, view the device's details in Device Manager and go to the \"Async Messages\" tab.",
+			"item": [
+				{
+					"name": "Send Async Command to Device",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"MessageType\": 3, // Set Operational Mode (0x0003)\n    \"CANAddress\": 4294967295, // HOST_ADDRESS - always use this\n    \"Data\": [\n        3 // 1 for Normal Mode, 3 for Recovery Mode\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/asyncmessaging/send/{{serial}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"asyncmessaging",
+								"send",
+								"{{serial}}"
+							]
+						},
+						"description": "This is the primary endpoint for sending commands to a device.\n\n**How to use:**\n1.  Set the `{{serial}}` of your target device in the Postman environment.\n2.  Modify the JSON body to send the desired command. Common examples are saved in this request.\n\nRef: `OEM WebAPI - v1.13.pdf`, Section 7"
+					},
+					"response": [],
+					"example": [
+						{
+							"name": "Example: Set Recovery Mode ON",
+							"id": "c1f7b8a0-5e3d-4b9f-8a1c-1e2d3f4a5b6c",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"MessageType\": 3, \n    \"CANAddress\": 4294967295,\n    \"Data\": [\n        3 \n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"url": { "raw": "{{baseURL}}/asyncmessaging/send/{{serial}}", "host": [ "{{baseURL}}" ], "path": [ "asyncmessaging", "send", "{{serial}}" ] }
+							},
+							"body": "{\n    \"MessageType\": 3, // Set Operational Mode (0x0003)\n    \"CANAddress\": 4294967295, // HOST_ADDRESS - always use this\n    \"Data\": [\n        3 // 3 = Recovery Mode ON\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}"
+						},
+						{
+							"name": "Example: Set Recovery Mode OFF (Normal Mode)",
+							"id": "d2f8c9b1-6e4d-4c8g-9b2d-2f3e4g5b6c7d",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"MessageType\": 3, \n    \"CANAddress\": 4294967295, \n    \"Data\": [\n        1 \n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"url": { "raw": "{{baseURL}}/asyncmessaging/send/{{serial}}", "host": [ "{{baseURL}}" ], "path": [ "asyncmessaging", "send", "{{serial}}" ] }
+							},
+							"body": "{\n    \"MessageType\": 3, // Set Operational Mode (0x0003)\n    \"CANAddress\": 4294967295, // HOST_ADDRESS - always use this\n    \"Data\": [\n        1 // 1 = Normal Mode\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}"
+						},
+						{
+							"name": "Example: Immobilise Vehicle ON",
+							"id": "e3g9d0c2-7f5e-4d7h-0c3e-3g4f5h6c7d8e",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"MessageType\": 256, \n    \"CANAddress\": 4294967295,\n    \"Data\": [\n        1 \n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"url": { "raw": "{{baseURL}}/asyncmessaging/send/{{serial}}", "host": [ "{{baseURL}}" ], "path": [ "asyncmessaging", "send", "{{serial}}" ] }
+							},
+							"body": "{\n    \"MessageType\": 256, // Immobilise (0x0100)\n    \"CANAddress\": 4294967295, // HOST_ADDRESS - always use this\n    \"Data\": [\n        1 // 1 = Immobiliser ON, 0 = Immobiliser OFF\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}"
+						},
+						{
+							"name": "Example: Set Odometer (to 1000km)",
+							"id": "f4h0e1d3-8g6f-4e8i-1d4f-4h5g6i7d8e9f",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"MessageType\": 18,\n    \"CANAddress\": 4294967295,\n    \"Data\": [\n        16, 39, 1, 0\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"url": { "raw": "{{baseURL}}/asyncmessaging/send/{{serial}}", "host": [ "{{baseURL}}" ], "path": [ "asyncmessaging", "send", "{{serial}}" ] }
+							},
+							"body": "{\n    \"MessageType\": 18, // Set Odometer (0x0012)\n    \"CANAddress\": 4294967295,\n    \"Data\": [\n        16, 39, 1, 0 // Odo value in m/10. 1000km = 1,000,000m = 100,000 m/10. Hex = 0x0186A0 -> Little Endian = A0 86 01 00 -> [160, 134, 1, 0]. Error in doc, should be 160,134,1,0 for 1000km. This example is 100,000 (1000km / 10m).\n    ],\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}"
+						},
+						{
+							"name": "Example: Instruct Device to Connect to OEM",
+							"id": "g5i1f2e4-9h7g-5f9j-2e5g-5i6h7j8e9f0g",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"MessageType\": 7,\n    \"CANAddress\": 4294967295,\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}",
+									"options": { "raw": { "language": "json" } }
+								},
+								"url": { "raw": "{{baseURL}}/asyncmessaging/send/{{serial}}", "host": [ "{{baseURL}}" ], "path": [ "asyncmessaging", "send", "{{serial}}" ] }
+							},
+							"body": "{\n    \"MessageType\": 7, // Connect to OEM (0x0007)\n    \"CANAddress\": 4294967295,\n    \"ExpiryDateUTC\": \"2099-12-31T23:59:59Z\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://api.oemserver.com/v1.0"
+		},
+		{
+			"key": "serial",
+			"value": "YOUR_DEVICE_SERIAL"
+		},
+		{
+			"key": "productId",
+			"value": "YOUR_PRODUCT_ID"
+		},
+		{
+			"key": "templateId",
+			"value": "YOUR_TEMPLATE_ID"
+		},
+		{
+			"key": "imei",
+			"value": "YOUR_DEVICE_IMEI"
+		},
+		{
+			"key": "connectorId",
+			"value": "YOUR_CONNECTOR_ID"
+		}
+	]
+}
