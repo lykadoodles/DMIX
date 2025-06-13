@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Debug & Decode Digital Matter Device Logs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Dark Theme with Blue & Grey - High Contrast */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #111827; /* Tailwind gray-900 */
+            color: #d1d5db; /* Default text color (gray-300) */
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+        }
+        .content-card {
+            background-color: #1f2937; /* Tailwind gray-800 */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border: 1px solid #374151; /* gray-700 border */
+        }
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #eff6ff; /* blue-50, almost white */
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #3b82f6; /* blue-500 */
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.75rem;
+            color: #60a5fa; /* blue-400 */
+        }
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f9fafb; /* gray-50 (white) */
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        p, li {
+            color: #d1d5db; /* gray-300 */
+            line-height: 1.7;
+        }
+        a {
+            color: #60a5fa; /* blue-400 */
+            font-weight: 500;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #374151; /* gray-700 */
+            color: #f3f4f6; /* gray-100 */
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.375rem;
+            font-family: 'SF Mono', 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        pre code {
+            display: block;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #4b5563;
+        }
+        .info-box {
+            background-color: #1e3a8a; /* A darker, rich blue */
+            border-left: 4px solid #60a5fa; /* Lighter blue accent */
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+        }
+        .info-box h3 {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #ffffff;
+        }
+        .info-box p, .info-box li {
+             color: #dbeafe; /* Lighter blue text for high contrast */
+        }
+        .info-box ul {
+            padding-left: 1.25rem;
+            list-style-type: disc;
+        }
+        .img-placeholder {
+            width: 100%;
+            height: auto;
+            border: 2px dashed #4b5563; /* gray-600 */
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #374151; /* gray-700 */
+            color: #9ca3af; /* gray-400 */
+            font-weight: 500;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <div class="max-w-4xl mx-auto py-12 px-4">
+        <!-- Header Section -->
+        <header class="header-gradient text-white p-10 rounded-xl shadow-2xl mb-12 text-center">
+            <i class="fas fa-bug fa-3x mb-4 opacity-75"></i>
+            <h1 class="text-4xl font-extrabold tracking-tight">Debugging & Decoding Device Logs</h1>
+            <p class="mt-3 text-lg opacity-90 max-w-2xl mx-auto">A Practical Guide to Troubleshooting Your Integration</p>
+        </header>
+
+        <!-- Core Principle -->
+        <div class="content-card">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i>The Core Principle: Connection vs. Data</h2>
+            <p>Nearly every integration issue falls into one of two categories. Asking this question first will save you hours of troubleshooting:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <div class="info-box">
+                    <h3>1. Is it a Connection Problem?</h3>
+                    <p>The device is talking to Device Manager, but Device Manager cannot successfully send the data to **your** server.</p>
+                </div>
+                <div class="info-box">
+                    <h3>2. Is it a Data Problem?</h3>
+                    <p>Your server is receiving data, but the values (e.g., location, voltage) are incorrect, missing, or don't make sense.</p>
+                </div>
+            </div>
+            <p class="mt-4">Device Manager gives you powerful tools to diagnose both.</p>
+        </div>
+
+        <!-- Section 1: Debugging Tools -->
+        <div class="content-card">
+            <h2 class="section-title"><i class="fas fa-tools"></i>1. Debugging with Device Manager Tools</h2>
+            <p>Your first step should always be to check the logs within your <a href="https://www.oemserver.com/" target="_blank">Device Manager</a> account.</p>
+
+            <h3 class="subsection-title">A. The Data Capturing Tool (For "Live" Device Data)</h3>
+            <p>This tool shows you the raw telemetry data as it's being processed by Device Manager, *before* it's sent to your server. It's the absolute source of truth for what the device is reporting.</p>
+            <h4 class="font-semibold mt-4 mb-2 text-gray-100">How to Use It:</h4>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>In Device Manager, find your device and click the "Wrench" icon (Manage).</li>
+                <li>Go to the **Data Capturing** tab and click **Start Capturing**.</li>
+                <li>Power cycle your device or trigger an upload. You will see live logs appear.</li>
+            </ol>
+            <h4 class="font-semibold mt-4 mb-2 text-gray-100">What to Look For:</h4>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Is data appearing here?</strong> If yes, the device's connection to Device Manager is healthy. If no, the problem is with the device hardware, SIM, or network coverage.</li>
+                    <li><strong>What are the values?</strong> Compare the values here with what you see in your platform. This is the fastest way to spot a parsing error on your end.</li>
+                </ul>
+            </div>
+            <div class="img-placeholder"><i class="fas fa-camera mr-2"></i>Screenshot of the Data Capturing Tool in Device Manager</div>
+
+
+            <h3 class="subsection-title">B. The Forwarder Logs (For Connection Issues)</h3>
+            <p>If data appears in the Data Capturing tool but not on your server, the problem is almost always with the connection **between** Device Manager and your endpoint. The Forwarder Logs will tell you why.</p>
+            <h4 class="font-semibold mt-4 mb-2 text-gray-100">How to Use It:</h4>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>From the main menu in Device Manager, go to **Forwarders**.</li>
+                <li>Find the Connector/Forwarder you configured and click the "Logs" icon (<i class="fas fa-file-alt"></i>).</li>
+            </ol>
+            <h4 class="font-semibold mt-4 mb-2 text-gray-100">What to Look For:</h4>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Successful (<code>200 OK</code>) Response:</strong> If you see <code>HTTP/1.1 200 OK</code>, it means Device Manager successfully sent the data and your server acknowledged it. If you still don't see data, the issue is in your application's logic *after* it receives the data.</li>
+                    <li><strong>Error Responses (<code>4xx</code> or <code>5xx</code>):</strong>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li><code>HTTP/404 Not Found</code>: Your endpoint URL is incorrect in the Connector settings.</li>
+                            <li><code>HTTP/400 Bad Request</code> or <code>HTTP/500 Internal Server Error</code>: Your server received the data but crashed while processing it. Check your application logs.</li>
+                            <li><code>Timeout</code>: Device Manager couldn't connect to your server. This is very often a **firewall issue**. Ensure your server's IP and port are publicly accessible.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+             <div class="img-placeholder"><i class="fas fa-camera mr-2"></i>Screenshot of the Forwarder Logs showing success and error messages</div>
+        </div>
+
+        <!-- Section 2: Decoding Example -->
+        <div class="content-card">
+            <h2 class="section-title"><i class="fas fa-code"></i>2. A Practical Decoding Example (JSON Payload)</h2>
+            <p>Let's say your server receives the following JSON record. This is what you would see in the Data Capturing tool or what gets POSTed to your endpoint.</p>
+            <pre class="mt-4"><code class="language-json">{
+    "SeqNo": 24866,
+    "Reason": 11,
+    "DateUTC": "2025-06-13 12:35:14",
+    "Fields": [
+        { "FType": 0, "GpsUTC": "2025-06-13 12:34:39", "Lat": -319535124, "Long": 1158241971, "Spd": 1748, "Head": 141, "GpsStat": 3 },
+        { "FType": 2, "Din": 1, "DOut": 0, "DevStat": 3 },
+        { "FType": 6, "AnalogueData": { "1": 4144, "4": 25 } }
+    ]
+}</code></pre>
+            <h3 class="subsection-title mt-6">Decoding Step-by-Step:</h3>
+            <ol class="list-decimal list-inside space-y-4">
+                <li><strong>Record Header:</strong>
+                    <ul>
+                        <li><code>"Reason": 11</code> → Look up in `DMT Log Reasons` doc. This means **"Heartbeat"**.</li>
+                        <li><code>"DateUTC": "..."</code> → The time the record was created on the device.</li>
+                    </ul>
+                </li>
+                <li><strong>Field 1 (FType 0 - GPS Data):</strong>
+                    <ul>
+                        <li><code>"Lat": -319535124</code> → Per `DMT Data Fields` doc, Latitude is `Degrees * 1E7`.
+                            <br>Calculation: <code>-319535124 / 10,000,000 = -31.9535124</code></li>
+                        <li><code>"Spd": 1748</code> → Speed is in `Cm/s`.
+                            <br>To get km/h: <code>1748 * 0.036 = 62.9 km/h</code></li>
+                        <li><code>"Head": 141</code> → Heading is `Degrees / 2`.
+                            <br>Calculation: <code>141 * 2 = 282 degrees</code> (West-North-West)</li>
+                    </ul>
+                </li>
+                <li><strong>Field 2 (FType 2 - Digital Data):</strong>
+                    <ul>
+                        <li><code>"DevStat": 3</code> → This is a bitmask. Convert 3 to binary: <code>...0011</code>.
+                            <br>Bit 0 is <code>1</code> (In Trip = true). Bit 1 is <code>1</code> (Internal Battery = Good).</li>
+                        <li><code>"Din": 1</code> → Digital Inputs. Convert 1 to binary: <code>...0001</code>.
+                            <br>Bit 0 is <code>1</code> (Ignition is ON).</li>
+                    </ul>
+                </li>
+                <li><strong>Field 3 (FType 6 - Analog Data):</strong>
+                    <ul>
+                        <li><code>"1": 4144</code> → Analog #1 is "Internal Battery Voltage" in `mV`. Value is `4.144 V`.</li>
+                        <li><code>"4": 25</code> → Analog #4 is "GSM Signal Strength". Value is `25` (a strong CSQ value).</li>
+                    </ul>
+                </li>
+            </ol>
+            <p class="mt-6 font-semibold text-gray-100">By methodically cross-referencing the payload with the `DMT Data Fields` document, you can quickly verify that your platform's parsing logic is correct.</p>
+        </div>
+
+        <footer class="text-center py-8 mt-4 text-gray-500 text-sm">
+            <p>&copy; <span id="year"></span> Digital Matter - Integrator Xperience Project. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
