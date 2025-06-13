@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Matter Integrator Guides</title>
+    <style>
+        /* Basic Styles for Email Clients */
+        body { margin: 0; padding: 0; background-color: #f0f4f8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .email-container { max-width: 680px; margin: 20px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb; }
+        .header { background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%); color: white; padding: 40px; text-align: center; }
+        .header h1 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+        .header p { margin: 10px 0 0; font-size: 16px; opacity: 0.9; }
+        .content { padding: 30px; color: #374151; line-height: 1.6; }
+        .content h2 { font-size: 22px; color: #1e3a8a; border-bottom: 2px solid #bfdbfe; padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; font-weight: 700;}
+        .content h3 { font-size: 18px; color: #1e3a8a; margin-top: 25px; margin-bottom: 10px; font-weight: 600; }
+        .content p, .content li { font-size: 15px; }
+        .content ul { list-style-type: none; padding-left: 0; }
+        .content ul li { display: flex; align-items: flex-start; margin-bottom: 12px; }
+        .content ul li i { font-size: 16px; color: #2563eb; margin-right: 12px; margin-top: 4px; width: 20px; text-align: center; }
+        .button { display: inline-block; background-color: #2563eb; color: #ffffff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background-color 0.2s ease; }
+        .button:hover { background-color: #1d4ed8; }
+        .highlight-box { background-color: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #3b82f6; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .highlight-box h3 { margin-top: 0; }
+        .resource-link { color: #2563eb; text-decoration: none; font-weight: 600; }
+        .resource-link:hover { text-decoration: underline; }
+        .footer { background-color: #e5e7eb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
+    </style>
+    <!-- Font Awesome for Icons (important for email rendering) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ================================================================= -->
+    <!-- Persona 1: The "Solution Seeker" (SS) Email Guide                -->
+    <!-- Subject: Your Fast-Track to IoT: The Solution Seeker's Guide      -->
+    <!-- ================================================================= -->
+    <div class="email-container" style="margin-bottom: 40px;">
+        <div class="header">
+            <h1>Your Integration Pathway</h1>
+            <p>The "Solution Seeker" Persona</p>
+        </div>
+        <div class="content">
+            <h2>Hello [Integrator Name],</h2>
+            <p>Thank you for completing our questionnaire. Your focus on rapid deployment and leveraging a feature-rich platform identifies you as a **Solution Seeker**. Your optimal path is designed for speed, value, and simplicity.</p>
+
+            <div class="highlight-box">
+                <h3>Your Recommended Integration Path</h3>
+                <p>Based on your profile, we strongly recommend the **Telematics Guru + Webhooks** path. This provides you with a powerful, fully-featured user platform immediately, while still allowing you to send critical data to your other business systems as needed.</p>
+            </div>
+
+            <h3><i class="fas fa-rocket"></i>Your 3-Step "Fast-Track" Plan</h3>
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><b>Account Activation:</b> Our team will configure your Telematics Guru partner account and send you an invitation link shortly. This is your primary portal.</li>
+                <li style="margin-bottom: 10px;"><b>Platform Exploration:</b> Once logged in, begin exploring the platform's features, such as live tracking, reports, and setting up alerts.</li>
+                <li style="margin-bottom: 10px;"><b>Connect Other Systems:</b> When you need to push specific events (like trip completion or geofence alerts) to another application, configure a <a href="https://support.digitalmatter.com/support/solutions/articles/16000096238-alert-notifications-through-webhooks" class="resource-link" target="_blank">Webhook in Telematics Guru</a>.</li>
+            </ol>
+
+            <h3><i class="fas fa-book"></i>Key Resources for You</h3>
+            <ul>
+                <li><i class="fas fa-cloud"></i><b>Focus On:</b> The <a href="https://www.telematics.guru/" class="resource-link" target="_blank">Telematics Guru Platform</a> and its extensive user guides.</li>
+                <li><i class="fas fa-plug"></i><b>Primary Tool:</b> The <a href="https://support.digitalmatter.com/support/solutions/articles/16000096238-alert-notifications-through-webhooks" class="resource-link" target="_blank">Webhook configuration</a> for sending curated data outwards.</li>
+            </ul>
+
+            <h3><i class="fas fa-eye-slash"></i>What You Can Safely Ignore</h3>
+            <p>To keep you on the fast track, you do not need to focus on the following complex topics for your primary goal:</p>
+            <ul>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>JSON/TCP Payload Parsing & Data Field Documents.</li>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>The OEM WebAPI for device control (unless your needs evolve).</li>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Direct device communication protocols.</li>
+            </ul>
+
+            <p style="margin-top: 25px;">We are confident this path will provide the immediate value and functionality you're looking for. Please let us know if you have any questions.</p>
+        </div>
+        <div class="footer">
+            Digital Matter | Integrator Xperience Project
+        </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- Persona 2: The "Pragmatic Developer" (PD) Email Guide             -->
+    <!-- Subject: Your Integration Blueprint: The Pragmatic Developer's Guide -->
+    <!-- ================================================================= -->
+    <div class="email-container" style="margin-bottom: 40px;">
+        <div class="header">
+            <h1>Your Integration Blueprint</h1>
+            <p>The "Pragmatic Developer" Persona</p>
+        </div>
+        <div class="content">
+            <h2>Hello [Integrator Name],</h2>
+            <p>Thank you for completing our questionnaire. Your focus on modern APIs, clear documentation, and leveraging a stable platform identifies you as a **Pragmatic Developer**. Your optimal path is designed for a balance of power, manageability, and development efficiency.</p>
+
+            <div class="highlight-box">
+                <h3>Your Recommended Integration Path</h3>
+                <p>We recommend the **Device Manager + JSON HTTPS Connector** for data ingestion, augmented by the **OEM WebAPI** for device control and management. This approach provides you with easy-to-use, human-readable data while giving you full programmatic control over your devices.</p>
+            </div>
+
+            <h3><i class="fas fa-tasks"></i>Your 3-Step Action Plan</h3>
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><b>Set Up Your Endpoint:</b> In Device Manager, <a href="https://support.digitalmatter.com/support/solutions/articles/16000100659-creating-a-connector-http-json-" class="resource-link" target="_blank">create a new JSON HTTPS Connector</a> that points to your server's data ingestion endpoint.</li>
+                <li style="margin-bottom: 10px;"><b>Explore the API:</b> Import the **attached Postman Collection** into Postman. Configure your environment with your credentials and start making API calls immediately to manage your devices.</li>
+                <li style="margin-bottom: 10px;"><b>Go Live with a Device:</b> Assign your new Connector to a test device to begin receiving data and verify your endpoint is working correctly.</li>
+            </ol>
+
+            <h3><i class="fas fa-book-open"></i>Your Core Documentation</h3>
+            <ul>
+                <li><i class="fas fa-file-code"></i><b>Data Ingestion:</b> <a href="#" class="resource-link">[Attachment] DMT JSON Device Integration.pdf</a> - The definitive guide to our JSON payload structure.</li>
+                <li><i class="fas fa-cogs"></i><b>Device Control:</b> <a href="#" class="resource-link">[Attachment] OEM WebAPI.pdf</a> - Your reference for all device management and async messaging endpoints.</li>
+                <li><i class="fas fa-tools"></i><b>Interactive API Tool:</b> <a href="#" class="resource-link">[Attachment] DM-OEM-WebAPI-PD-Collection.json</a> - Your essential Postman toolkit.</li>
+                <li><i class="fas fa-microchip"></i><b>Edge Devices:</b> If using Edge devices, review the <a href="#" class="resource-link">[Attachment] Edge Device - Forwarder HTTP Integration.pdf</a> and be sure to select the "HTTP Connector Format" checkbox for unified JSON.</li>
+            </ul>
+
+            <h3><i class="fas fa-eye-slash"></i>What You Can Safely Ignore</h3>
+            <p>To maximize your efficiency, you can de-prioritize the complexities of:</p>
+            <ul>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Raw TCP Connector setup and binary parsing.</li>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Direct-to-server device communication protocols.</li>
+            </ul>
+
+            <p style="margin-top: 25px;">This path offers a powerful and modern foundation for your application. We're excited to see what you build!</p>
+        </div>
+        <div class="footer">
+            Digital Matter | Integrator Xperience Project
+        </div>
+    </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- Persona 3: The "Efficiency Engineer" (EE) Email Guide                 -->
+    <!-- Subject: Max Performance: The Efficiency Engineer's Guide to DM       -->
+    <!-- ===================================================================== -->
+    <div class="email-container" style="margin-bottom: 40px;">
+        <div class="header">
+            <h1>Your High-Performance Pathway</h1>
+            <p>The "Efficiency Engineer" Persona</p>
+        </div>
+        <div class="content">
+            <h2>Hello [Integrator Name],</h2>
+            <p>Thank you for completing our questionnaire. Your focus on raw data, stream efficiency, and protocol-level control identifies you as an **Efficiency Engineer**. Your optimal path is engineered for maximum performance and data throughput.</p>
+
+            <div class="highlight-box">
+                <h3>Your Recommended Integration Path</h3>
+                <p>We recommend the **Device Manager + Raw TCP Connector** for data ingestion, paired with the **OEM WebAPI** for out-of-band device management. This architecture provides the most efficient data stream while retaining the benefits of Device Manager for configuration and control.</p>
+            </div>
+
+            <h3><i class="fas fa-cogs"></i>Your 3-Step Engineering Plan</h3>
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><b>Build Your TCP Listener:</b> Develop and deploy your TCP server application on a public IP and port, ready to accept connections.</li>
+                <li style="margin-bottom: 10px;"><b>Configure the Data Stream:</b> In Device Manager, create a `TCP Connector` pointing to your listener, and assign it to your test devices.</li>
+                <li style="margin-bottom: 10px;"><b>Parse & Control:</b> Use the attached documentation to parse the incoming binary stream. Use the attached Postman collection to manage devices via the OEM WebAPI.</li>
+            </ol>
+            
+            <h3><i class="fas fa-book-reader"></i>Your Essential Documentation</h3>
+            <p>For this path, a deep understanding of the device protocol is key. These documents are your primary reference.</p>
+            <ul>
+                <li><i class="fas fa-network-wired"></i><b>TCP Protocol:</b> <a href="#" class="resource-link">[Attachment] DMT Device Integration - Flexi Record.pdf</a></li>
+                <li><i class="fas fa-puzzle-piece"></i><b>Payload Parsing:</b> <a href="#" class="resource-link">[Attachment] DMT Data Fields v8.21.pdf</a> **(CRITICAL FOR PARSING)**</li>
+                <li><i class="fas fa-question-circle"></i><b>Event Decoding:</b> <a href="#" class="resource-link">[Attachment] DMT Log Reasons.pdf</a></li>
+                <li><i class="fas fa-tools"></i><b>Device Management:</b> <a href="#" class="resource-link">[Attachment] OEM WebAPI.pdf</a> & Postman Collection.</li>
+            </ul>
+
+            <h3><i class="fas fa-eye-slash"></i>What You Can Safely Ignore</h3>
+            <p>Your focus on efficiency means you can bypass higher-level abstractions:</p>
+            <ul>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>JSON HTTPS Connector documentation.</li>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Any Telematics Guru platform guides.</li>
+            </ul>
+
+            <p style="margin-top: 25px;">This path provides the granular control and performance you require. We look forward to supporting your high-throughput solution.</p>
+        </div>
+        <div class="footer">
+            Digital Matter | Integrator Xperience Project
+        </div>
+    </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- Persona 4: The "Sovereign System Architect" (SSA) Email Guide         -->
+    <!-- Subject: Full Control: The Sovereign Architect's Guide to DM          -->
+    <!-- ===================================================================== -->
+    <div class="email-container">
+        <div class="header">
+            <h1>Your Architectural Roadmap</h1>
+            <p>The "Sovereign System Architect" Persona</p>
+        </div>
+        <div class="content">
+            <h2>Hello [Integrator Name],</h2>
+            <p>Thank you for completing our questionnaire. Your focus on architectural control, platform independence, and minimizing ongoing fees identifies you as a **Sovereign System Architect**. This path provides the ultimate control over your integration.</p>
+
+            <div class="highlight-box" style="border-left-color: #f59e0b;">
+                <h3 style="color: #b45309;"><i class="fas fa-exclamation-triangle"></i>Critical Considerations First</h3>
+                <p>The **Direct Integration (Raw TCP to 3rd Party Server)** path is our most advanced. By bypassing Device Manager for data, you assume responsibility for services it typically provides. Please carefully consider:</p>
+                 <ul>
+                    <li><i class="fas fa-satellite-dish" style="color: #d97706;"></i><b>GNSS Aiding Data:</b> Bypassing DM can slow down GPS fix times and increase battery usage.</li>
+                    <li><i class="fas fa-sync-alt" style="color: #d97706;"></i><b>FOTA Updates:</b> Devices **must** be instructed to reconnect to Device Manager to receive critical firmware updates.</li>
+                    <li><i class="fas fa-headset" style="color: #d97706;"></i><b>Support:</b> Our ability to diagnose device communication issues is limited without Device Manager's logs.</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-server"></i>Your 3-Step Implementation Plan</h3>
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><b>Initial Provisioning:</b> In Device Manager, configure your device's Admin Parameters to point to your server's IP and port. This is a one-time setup step per device.</li>
+                <li style="margin-bottom: 10px;"><b>Server Implementation:</b> Build your TCP server to handle the full, stateful device communication protocol (Hello, Data, Commit, Async, etc.). This is more complex than a simple data listener.</li>
+                <li style="margin-bottom: 10px;"><b>FOTA & Management Strategy:</b> We recommend using the "Periodic DM Connection" setting or implementing the async message (`0x0007`) to instruct devices to check in for firmware updates.</li>
+            </ol>
+            
+            <h3><i class="fas fa-book-reader"></i>Your Essential Documentation</h3>
+            <p>These documents are non-negotiable for the direct integration path.</p>
+            <ul>
+                <li><i class="fas fa-file-signature"></i><b>The Core Protocol:</b> <a href="#" class="resource-link">[Attachment] Direct Third Party Server Communication 1.8.pdf</a> **(YOUR MOST IMPORTANT DOCUMENT)**</li>
+                <li><i class="fas fa-puzzle-piece"></i><b>Payload Parsing:</b> <a href="#" class="resource-link">[Attachment] DMT Data Fields v8.21.pdf</a></li>
+                <li><i class="fas fa-question-circle"></i><b>Event Decoding:</b> <a href="#" class="resource-link">[Attachment] DMT Log Reasons.pdf</a></li>
+            </ul>
+
+            <h3><i class="fas fa-eye-slash"></i>What You Can Safely Ignore</h3>
+            <ul>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Device Manager Connectors (JSON & TCP) as you are bypassing them.</li>
+                <li><i class="fas fa-times-circle" style="color: #9ca3af;"></i>Most of the OEM WebAPI, unless you use it to manage the periodic check-in parameters.</li>
+            </ul>
+
+            <p style="margin-top: 25px;">This path offers maximum control. We recommend starting with a TCP Connector in Device Manager to validate your parser before switching the device to direct mode.</p>
+        </div>
+        <div class="footer">
+            Digital Matter | Integrator Xperience Project
+        </div>
+    </div>
+</body>
+</html>
