@@ -101,7 +101,7 @@
         <!-- Core Concept -->
         <div class="content-card">
             <h2 class="path-title"><i class="fas fa-lightbulb mr-3 text-yellow-400"></i>The Core Concept</h2>
-            <p class="text-gray-600">Both Traccar and Flespi are powerful platforms designed to listen for direct connections from IoT devices. For this reason, this guide uses the **Direct to 3rd Party Server** integration method.</p>
+            <p class="text-gray-600">Both Traccar and Flespi are powerful platforms designed to listen for direct connections from IoT devices. For this reason, this guide uses the <b>Direct to 3rd Party Server</b> integration method.</p>
             <p class="mt-2 text-gray-600">This means we will configure the Digital Matter device (via Device Manager) to send its data directly to the unique server address and port provided by your Traccar or Flespi instance. This is a highly efficient, performant path that puts you in full control.</p>
         </div>
 
@@ -125,7 +125,7 @@
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h3>Configure Your Digital Matter Device</h3>
-                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's **Admin Parameters** and go to the **Third Party Server** tab. Enter your Traccar server details:</p>
+                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's <b>Admin Parameters</b> and go to the <b>Third Party Server</b> tab. Enter your Traccar server details:</p>
                     <ul class="list-disc pl-5 mt-2 space-y-1">
                         <li><b>Non OEM Server:</b> Your Traccar IP or domain (e.g., <code>123.45.67.89</code>).</li>
                         <li><b>Non OEM Server TCP Port:</b> <code>5137</code> (or your custom DMT port).</li>
@@ -138,7 +138,7 @@
                 <div class="step-number">3</div>
                 <div class="step-content">
                     <h3>Add Your Device in Traccar</h3>
-                    <p>In your Traccar UI, add a new device. Give it a name and use the device's **IMEI** as the **Identifier**.</p>
+                    <p>In your Traccar UI, add a new device. Give it a name and use the device's <b>IMEI</b> as the <b>Identifier</b>.</p>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h3>Create a Flespi Channel</h3>
-                    <p>In your Flespi account, navigate to **Telematics Hub** -> **Channels** and create a new channel. For the **Protocol**, search for and select <code>digital-matter</code>. Save it to get your unique **Domain Name and Port**.</p>
+                    <p>In your Flespi account, navigate to <b>Telematics Hub</b> -> <b>Channels</b> and create a new channel. For the <b>Protocol</b>, search for and select <code>digital-matter</code>. Save it to get your unique <b>Domain Name and Port</b>.</p>
                 </div>
             </div>
 
@@ -171,10 +171,10 @@
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h3>Configure Your Digital Matter Device</h3>
-                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's **Admin Parameters** -> **Third Party Server** tab. Enter your Flespi channel details:</p>
+                    <p>In <a href="https://www.oemserver.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">Device Manager</a>, find your device's <b>Admin Parameters</b> -> <b>Third Party Server</b> tab. Enter your Flespi channel details:</p>
                     <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li><b>Non OEM Server:</b> The Domain Name from Flespi.</li>
-                        <li><b>Non OEM Server TCP Port:</b> The Port from Flespi.</li>
+                        <li><b>Non OEM Server:</b> The <b>Domain Name</b> from Flespi.</li>
+                        <li><b>Non OEM Server TCP Port:</b> The <b>Port</b> from Flespi.</li>
                     </ul>
                      <p class="mt-2">Save the parameter changes.</p>
                 </div>
@@ -184,7 +184,7 @@
                 <div class="step-number">3</div>
                 <div class="step-content">
                     <h3>Create a Flespi Device & Verify</h3>
-                    <p>After power cycling your device, check the **Logs & Messages** tab of your Flespi channel for incoming data. Then, create a new device in Flespi (**Telematics Hub** -> **Devices**), select the correct device type, and use the device's **IMEI** as the **Ident**. You will then see parsed JSON data in the device's logs.</p>
+                    <p>After power cycling your device, check the <b>Logs & Messages</b> tab of your Flespi channel for incoming data. Then, create a new device in Flespi (<b>Telematics Hub</b> -> <b>Devices</b>), select the correct <b>device type</b>, and use the device's <b>IMEI</b> as the <b>Ident (IMEI, Serial, etc.)</b>. You will then see parsed JSON data in the device's logs.</p>
                 </div>
             </div>
         </div>
@@ -194,15 +194,15 @@
             <h2 class="path-title"><i class="fas fa-exclamation-circle mr-3 text-yellow-500"></i>Important Next Steps</h2>
              <div class="alert-box">
                 <h4><i class="fas fa-signal"></i> APN Settings</h4>
-                <p>Ensure the APN is correctly set in the device's parameters in Device Manager, especially if you are using a custom SIM card.</p>
+                <p>Ensure the <b>APN</b> is correctly set in the device's parameters in Device Manager, especially if you are using a custom SIM card.</p>
             </div>
              <div class="alert-box">
                 <h4><i class="fas fa-sync-alt"></i> Firmware Updates (FOTA)</h4>
-                <p>To receive critical firmware updates, we highly recommend setting the **OEM Connection Period (days)** on the "Third Party Server" tab to <code>7</code>. This tells the device to check in with Device Manager once a week without interrupting its regular data flow to your platform.</p>
+                <p>To receive critical firmware updates, we highly recommend setting the <b>OEM Connection Period (days)</b> on the "Third Party Server" tab to <code>7</code>. This tells the device to check in with Device Manager once a week without interrupting its regular data flow to your platform.</p>
             </div>
              <div class="alert-box">
                 <h4><i class="fas fa-cogs"></i> Advanced Control (Recovery Mode, etc.)</h4>
-                <p>While your device's data flows directly to your platform, you can still use the **Digital Matter OEM WebAPI** to send advanced commands (like setting Recovery Mode). Reference the **OEM WebAPI Postman Collection** for a ready-to-use toolkit for these commands.</p>
+                <p>While your device's data flows directly to your platform, you can still use the <b>Digital Matter OEM WebAPI</b> to send advanced commands (like setting Recovery Mode). Reference the <b>OEM WebAPI Postman Collection</b> for a ready-to-use toolkit for these commands.</p>
             </div>
         </div>
         
